@@ -21,7 +21,7 @@ export class RoomListComponent implements OnInit, OnChanges {
 
     roomList: Room[] = [];
     selectedRoom!: Room;
-    socket = io(environment.apiUrl);
+    socket = io(environment.apiUrl, { transports: ['websocket'] });
 
     constructor(private api: ApiService, private commonService: CommonService) { }
 
