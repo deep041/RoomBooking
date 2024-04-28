@@ -29,7 +29,7 @@ export class RoomDetailsComponent implements OnInit {
                 this.selectedRoom = details;
                 const groupedData = this.selectedRoom.bookings.reduce((acc: any, curr: any) => {
                     if (!acc[moment(curr.date).format('DD-MM-YYYY')]) {
-                      acc[moment(curr.date).format('DD-MM-YYYY')] = [];
+                        acc[moment(curr.date).format('DD-MM-YYYY')] = [];
                     }
                     acc[moment(curr.date).format('DD-MM-YYYY')].push(curr);
                     return acc;
@@ -38,13 +38,11 @@ export class RoomDetailsComponent implements OnInit {
                 this.datesToBeHighlighted = [];
                 for (let data in groupedData) {
                     if (groupedData[data] && groupedData[data].length === 18) {
-                        console.log('================= data ==========', data);
                         this.datesToBeHighlighted.push(moment(data, 'DD-MM-YYYY').format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
                     }
                 }
 
                 this.dateClass();
-                console.log('groupedData', groupedData, this.datesToBeHighlighted);
 
                 this.createTimeSlots();
             }

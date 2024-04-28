@@ -4,6 +4,7 @@ import { ApiService } from 'src/services/api.service';
 import { CommonService } from 'src/services/common.service';
 import { io } from "socket.io-client";
 import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-room-list',
@@ -20,7 +21,7 @@ export class RoomListComponent implements OnInit, OnChanges {
 
     roomList: Room[] = [];
     selectedRoom!: Room;
-    socket = io('http://localhost:3000');
+    socket = io(environment.apiUrl);
 
     constructor(private api: ApiService, private commonService: CommonService) { }
 

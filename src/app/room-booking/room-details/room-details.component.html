@@ -19,8 +19,6 @@
         </div>
     </div>
 
-    
-
     <div class="room-details-calendar">
         <div class="calendar">
             <mat-calendar *ngIf="datesToBeHighlighted.length === 0" [(selected)]="selectedDate" [dateClass]="dateClass()" (click)="createTimeSlots()"></mat-calendar>
