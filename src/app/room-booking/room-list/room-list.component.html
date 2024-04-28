@@ -1,0 +1,24 @@
+<div class="list-container">
+    <div class="list selected" (click)="selectRoom(room)" [ngClass]="{ selected: selectedRoom && (selectedRoom._id === room._id) }" *ngFor="let room of roomList">
+        <div class="left">
+            <div class="room-name">
+                {{ room.name }}
+            </div>
+            <div class="room-status">
+                <div class="availability" [ngClass]="{ 'not-available': room.availability === 'Currently Unavailable', 'available': room.availability === 'Currently Available' }"></div>
+                <div>{{ room.availability }}</div> 
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="room-facilities">
+                <div class="facility" *ngIf="room.facilities.isProjector">Projector</div>
+                <div class="facility" *ngIf="room.facilities.isLargeScreen">Large Screen</div>
+                <div class="facility" *ngIf="room.facilities.isSound">Sound</div>
+            </div>
+            <div class="room-capacity">
+                {{ room.capacity }} seat capacity
+            </div>
+        </div>
+    </div>
+</div>

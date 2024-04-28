@@ -1,0 +1,117 @@
+.room-details-container {
+    padding: 10px;
+    border-left: 1px solid #dde0e494;
+    height: 65vh;
+    overflow-y: auto;
+}
+
+.room-details-container .room-details {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+}
+
+.room-details-container .room-details .room-name {
+    text-align: left;
+}
+
+.room-details-container .room-details .room-name h2 {
+    margin: 0px;
+}
+
+.room-details-container .room-details .room-facilities .room-facilities-list {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.room-details-container .room-details .room-facilities .room-facilities-list .facility {
+    background-color: #eaf1fb;
+    color: #111;
+    width: fit-content;
+    padding: 4px 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.room-details-calendar {
+    margin-top: 10px;
+    display: flex;
+}
+
+.room-details-calendar .calendar {
+    min-width: 45%;
+}
+
+.room-details-calendar .time-slots {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: end;
+    align-content: flex-start;
+}
+
+.room-details-calendar .time-slots .slot {
+    background-color: #dde0e4;
+    color: #111;
+    padding: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    border: 1px solid #dde0e4;
+    cursor: pointer;
+}
+
+.room-details-calendar .time-slots .slot.selected, .room-details-calendar .time-slots .slot.selected:hover {
+    background-color: #ff000029;
+    color: red;
+    cursor: default;
+    border: 1px solid red;
+}
+
+.room-details-calendar .time-slots .slot.isOwnerSelected, .room-details-calendar .time-slots .slot.isOwnerSelected:hover {
+    background-color: #00800022;
+    color: green;
+    border: 1px solid green;
+}
+
+.room-details-calendar .time-slots .slot:hover {
+    background-color: #714b67;
+    color: #FFF;
+}
+
+.room-details-calendar .time-slots .slot.selectionStarted {
+    background-color: #714b67;
+    color: #FFF;
+}
+
+.room-details-container .book-room-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.room-details-container .book-room-container button {
+    border: 1px solid #714b67;
+    background-color: #714b67;
+    color: #FFF;
+    padding: 7px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.room-details-container .book-room-container button:hover {
+    border: 1px solid #714b67;
+    background-color: #FFF;
+    color: #714b67;
+}
+
+::ng-deep .special-date {
+    border-radius: 100%;
+}
+
+::ng-deep .special-date .mat-calendar-body-cell-content.mat-focus-indicator {
+    background-color: red !important;
+    color: #FFF;
+}

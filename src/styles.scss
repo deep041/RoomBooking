@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.custom-snackbar {
+    background-color: #714b67;
+    color: #FFF;
+}
+
+.custom-snackbar-error {
+    background-color: red;
+    color: #FFF;
+}

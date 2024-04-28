@@ -1,0 +1,71 @@
+.list-container {
+    padding: 10px;
+}
+
+.list-container .list {
+    padding: 10px;
+    border: 1px solid #dde0e4;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.list-container .list:hover {
+    background-color: #f0f1f3;
+    color: #111;
+    border: 1px solid #f0f1f3;
+}
+
+.list-container .list.selected {
+    background-color: #dde0e4;
+    color: #111;
+    border: 1px solid #dde0e4;
+}
+
+.list-container .list .left .room-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.list-container .list .left .room-status {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    align-items: baseline;
+}
+
+.list-container .list .left .room-status .availability {
+    width: 10px; 
+    height: 10px; 
+    border-radius: 50%; 
+}
+
+.availability.not-available {
+    background-color: red;
+}
+
+.availability.available {
+    background-color: green;
+}
+
+.list-container .list .right {
+    text-align: right;
+}
+
+.list-container .list .right .room-facilities {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.list-container .list .right .room-facilities .facility {
+    background-color: #eaf1fb;
+    color: #111;
+    width: fit-content;
+    padding: 4px 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}

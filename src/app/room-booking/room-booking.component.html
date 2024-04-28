@@ -1,0 +1,42 @@
+<div class="main-container">
+    <div class="header">
+        <h2>Room Booking Service</h2>
+    </div>
+    <div class="booking-container">
+        <div class="room-search">
+            <div class="search-input">
+                <input type="text" placeholder="Search" [(ngModel)]="search" />
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <div class="filters">
+                <div class="filter">
+                    <input type="checkbox" id="largeScreen" name="largeScreen" value="Large Screen" [(ngModel)]="isLargeScreen">
+                    <label for="largeScreen"> Large Screen </label><br>
+                </div>
+                <div class="hr-line"></div>
+                <div class="filter">
+                    <input type="checkbox" id="projector" name="projector" value="Projector" [(ngModel)]="isProjector">
+                    <label for="projector"> Projector </label><br>
+                </div>
+                <div class="hr-line"></div>
+                <div class="filter">
+                    <input type="checkbox" id="sound" name="sound" value="sound" [(ngModel)]="isSound">
+                    <label for="sound"> Sound </label><br>
+                </div>
+                <div class="hr-line"></div>
+                <div class="filter input">
+                    <label> Capacity </label><br>
+                    <input type="number" class="capacity-input" [(ngModel)]="capacity">
+                </div>
+            </div>
+        </div>
+        <div class="room">
+            <div class="room-list">
+                <app-room-list [searchValue]="search" [isProjector]="isProjector" [isLargeScreen]="isLargeScreen" [isSound]="isSound" [capacity]="capacity"></app-room-list>
+            </div>
+            <div class="room-details">
+                <app-room-details></app-room-details>
+            </div>
+        </div>
+    </div>
+</div>

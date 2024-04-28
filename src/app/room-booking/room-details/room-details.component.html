@@ -1,0 +1,33 @@
+<div class="room-details-container">
+    <div class="room-details">
+        <div class="room-name">
+            <h2>{{ selectedRoom?.name }}</h2> 
+            <div class="room-capacity">
+                {{ selectedRoom?.capacity }} seats available
+            </div>
+        </div>
+        <div class="room-facilities">
+            <div class="room-facilities-list">
+                <div class="facility" *ngIf="selectedRoom?.facilities?.isProjector">Projector</div>
+                <div class="facility" *ngIf="selectedRoom?.facilities?.isLargeScreen">Large Screen</div>
+                <div class="facility" *ngIf="selectedRoom?.facilities?.isSound">Sound</div>
+            </div>
+            
+            <div class="book-room-container">
+                <button (click)="bookRoom()">Book Room</button>
+            </div>        
+        </div>
+    </div>
+
+    
+
+    <div class="room-details-calendar">
+        <div class="calendar">
+            <mat-calendar *ngIf="datesToBeHighlighted.length === 0" [(selected)]="selectedDate" [dateClass]="dateClass()" (click)="createTimeSlots()"></mat-calendar>
+            <mat-calendar *ngIf="datesToBeHighlighted.length > 0" [(selected)]="selectedDate" [dateClass]="dateClass()" (click)="createTimeSlots()"></mat-calendar>
+        </div>
+        <div class="time-slots">
+            <div class="slot" (click)="selectTimeSlot(time)" [ngClass]="{ selected: time.isSelected, isOwnerSelected: time.isOwnerSelected, selectionStarted: time.isSelectionStarted }" *ngFor="let time of timeArray">{{ time.from }} - {{ time.to }}</div>
+        </div>
+    </div>
+</div>
