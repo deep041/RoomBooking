@@ -1,32 +1,32 @@
 export interface Room {
-    _id: String,
-    capacity: Number,
-    name: String,
+    _id: string,
+    capacity: number,
+    name: string,
     facilities: Facilities,
     availability: string,
     bookings: Bookings[]
 }
 
 interface Facilities {
-    _id: String,
-    roomId: String,
-    isSound: Boolean,
-    isProjector: Boolean,
-    isLargeScreen: Boolean
+    _id: string,
+    roomId: string,
+    isSound: boolean,
+    isProjector: boolean,
+    isLargeScreen: boolean
 }
 
 export interface Bookings {
-    _id: String,
-    sessionId: String,
-    roomId: String,
+    _id: string,
+    sessionId: string,
+    roomId: string,
     date: Date,
-    from: String,
-    to: String
+    from: string,
+    to: string
 }
 
 export interface RoomListResponse {
-    message: String,
-    status: Number,
+    message: string,
+    status: number,
     data: Room[]
 }
 
@@ -36,4 +36,19 @@ export interface RoomListPayload {
     isLargeScreen?: boolean,
     isProjector?: boolean,
     capacity?: number
+}
+
+export interface BookRoomResponse {
+    data: Bookings[],
+    isShowMessage: boolean,
+    message: string,
+    status: number
+}
+
+export interface BookRoomPayload {
+    date?: Date,
+    from?: string,
+    to?: string,
+    roomId?: string,
+    sessionId?: string | null
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { RoomListPayload, RoomListResponse } from 'src/interfaces/room.interface';
+import { BookRoomPayload, BookRoomResponse, RoomListPayload, RoomListResponse } from 'src/interfaces/room.interface';
 import { SessionPayload, SessionResponse } from 'src/interfaces/session.interface';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class ApiService {
         return this.http.get<SessionResponse>(`${this.url}/sessions`)
     }
 
-    bookRoom(payload: any) {
-        return this.http.post<SessionResponse>(`${this.url}/bookings`, payload)
+    bookRoom(payload: BookRoomPayload[]) {
+        return this.http.post<BookRoomResponse>(`${this.url}/bookings`, payload)
     }
 }

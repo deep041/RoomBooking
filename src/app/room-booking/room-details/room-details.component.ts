@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from 'src/interfaces/room.interface';
+import { Bookings, BookRoomPayload, BookRoomResponse, Room } from 'src/interfaces/room.interface';
 import { CommonService } from 'src/services/common.service';
 import * as moment from 'moment';
 import { SessionService } from 'src/services/session.service';
 import { ApiService } from 'src/services/api.service';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SelectedTime, Time } from 'src/interfaces/time.interface';
 
 @Component({
     selector: 'app-room-details',
@@ -16,10 +17,10 @@ export class RoomDetailsComponent implements OnInit {
 
     selectedRoom!: Room;
     selectedDate: Date = new Date();
-    timeArray: any = [];
-    selectedTime = { from: '', to: '' }
+    timeArray: Time[] = [];
+    selectedTime: SelectedTime = { from: '', to: '' }
     datesToBeHighlighted: any = [];
-    selectedTimeSlots: any = [];
+    selectedTimeSlots: Time[] = [];
 
     constructor(private commonService: CommonService, private sessionService: SessionService, private api: ApiService, public snackBar: MatSnackBar) { }
 
@@ -43,7 +44,6 @@ export class RoomDetailsComponent implements OnInit {
                 }
 
                 this.dateClass();
-
                 this.createTimeSlots();
             }
         });
@@ -56,12 +56,12 @@ export class RoomDetailsComponent implements OnInit {
         this.timeArray = [];
 
         for (let i = 0; i < 18; i++) {
-            let time: any = {};
+            let time: Time = {};
             time.from = start.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit' });
             start.setMinutes(start.getMinutes() + 30);
             time.to = start.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit' });
 
-            let index = this.selectedRoom?.bookings.findIndex((data: any) => ((time.from === data.from) && moment(this.selectedDate).set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).isSame(moment(data.date).set({ hour: 0, minute: 0, second: 0, millisecond: 0 }))));
+            let index = this.selectedRoom?.bookings.findIndex((data: Bookings) => ((time.from === data.from) && moment(this.selectedDate).set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).isSame(moment(data.date).set({ hour: 0, minute: 0, second: 0, millisecond: 0 }))));
             if (index != undefined && (index > -1)) {
                 let sessionId = this.sessionService.getSessionId();
                 if (this.selectedRoom.bookings[index].sessionId === sessionId) {
@@ -74,7 +74,7 @@ export class RoomDetailsComponent implements OnInit {
         }
     }
 
-    selectTimeSlot(time: any) {
+    selectTimeSlot(time: Time) {
         if (!time.isSelectionStarted) {
             time.isSelectionStarted = true;
             this.selectedTime.from = time.from;
@@ -82,15 +82,15 @@ export class RoomDetailsComponent implements OnInit {
             this.selectedTimeSlots.push(time);
         } else {
             time.isSelectionStarted = false;
-            let index = this.selectedTimeSlots.findIndex((slots: any) => slots.from === time.from);
+            let index = this.selectedTimeSlots.findIndex((slots: Time) => slots.from === time.from);
             this.selectedTimeSlots.splice(index, 1);
         }
     }
 
     bookRoom() {
-        let payload: any = [];
+        let payload: BookRoomPayload[] = [];
 
-        this.selectedTimeSlots.forEach((element: any) => {
+        this.selectedTimeSlots.forEach((element: Time) => {
             if (element) {
                 payload.push({
                     sessionId: this.sessionService.getSessionId(),
@@ -103,7 +103,7 @@ export class RoomDetailsComponent implements OnInit {
         });
 
         if (payload.length > 0) {
-            this.api.bookRoom(payload).subscribe((res: any) => {
+            this.api.bookRoom(payload).subscribe((res: BookRoomResponse) => {
                 if (res) {
                     this.selectedTimeSlots = [];
                 }
